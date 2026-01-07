@@ -1,5 +1,5 @@
 # Image-Classification-ML-Project
-An image classification machine learning project built to separately identify Cristiano Ronaldo and Lionel Messi.
+An image classification machine learning project developed to separately identify Cristiano Ronaldo and Lionel Messi.
 
 
 Project Overview
