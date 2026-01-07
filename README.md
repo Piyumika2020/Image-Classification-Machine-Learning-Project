@@ -37,6 +37,14 @@ Technologies Used
 - Jupyter Notebook, Visual Studio Code (Development tools)
 
 User Interface Images
+
+
+
 ![image alt](https://github.com/Piyumika2020/Image-Classification-Machine-Learning-Project/blob/797c2f208d2b22c35aa53f1a9d3456bd598769ba/Capture1.PNG)
 
+
+![image alt](https://github.com/Piyumika2020/Image-Classification-Machine-Learning-Project/blob/797c2f208d2b22c35aa53f1a9d3456bd598769ba/Capture2.PNG)
+
+
+![image alt](https://github.com/Piyumika2020/Image-Classification-Machine-Learning-Project/blob/3278e3b778fca746536bf32e6e7b3280452aed02/Capture3.PNG)
 
