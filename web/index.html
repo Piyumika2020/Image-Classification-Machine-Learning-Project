@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Recognition App</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Face Recognition</h1>
+	<h3>Please enter only Cristiano Ronaldo image or Lionel Messi image.</h3>
+
+    <!-- Image Upload -->
+    <input type="file" id="imageInput" accept="image/*">
+
+    <!-- Button -->
+    <button onclick="classifyImage()">Classify Image</button>
+
+    <!-- Result -->
+    <div id="result">Prediction will appear here</div>
+
+    <!-- Image Preview -->
+    <img id="preview" class="preview" />
+</div>
+
+<script>
+function classifyImage() {
+    const fileInput = document.getElementById("imageInput");
+    const resultDiv = document.getElementById("result");
+    const preview = document.getElementById("preview");
+
+    if (!fileInput.files.length) {
+        alert("Please select an image");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function () {
+        const base64Data = reader.result.split(',')[1];
+        preview.src = reader.result;
+        resultDiv.innerHTML = "Processing...";
+
+        fetch("http://127.0.0.1:5000/classify_image", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: "image_data=" + encodeURIComponent(base64Data)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (!data || data.length === 0) {
+                resultDiv.innerHTML = "No face detected ❌";
+            } else {
+                resultDiv.innerHTML =
+                    "<b>Prediction:</b> " + data[0].class + "<br>";
+                    <!--"<b>Confidence:</b> " + data[0].confidence + "%";-->
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            resultDiv.innerHTML = "Error connecting to Flask server ❌";
+        });
+    };
+
+    reader.readAsDataURL(fileInput.files[0]);
+}
+</script>
+
+</body>
+</html>
